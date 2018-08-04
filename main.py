@@ -1,4 +1,5 @@
 from machine import Pin, SPI
+from ampy_patch import PatchedPin
 from max7219 import Matrix8x8
 
 FLASH = Pin(0, Pin.IN)
@@ -30,7 +31,7 @@ MAP = { '0': False, '1': True }
 
 spi = SPI(-1, 10000000, miso=Pin(12), mosi=Pin(13), sck=Pin(14))
 # display = Matrix8x8(spi, Pin(2))
-display = Matrix8x8(spi, Pin(15))
+display = Matrix8x8(spi, PatchedPin(15))
 display.brightness(15)
 
 def pressed(pin):

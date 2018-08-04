@@ -28,11 +28,9 @@ class Matrix8x8:
         self.init()
 
     def _register(self, command, data):
-        # self.cs.low()
-        self.cs.value(0)
+        self.cs.low()
         self.spi.write(bytearray([command, data]))
-        # self.cs.high()
-        self.cs.value(1)
+        self.cs.high()
 
     def init(self):
         for command, data in (
