@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-This will be a MicroPython client for the
+This will be a [MicroPython][micropython] client for the
 [MQTT server][ledpanel-server]. It’s going to run on
 a [ESP8266 microcomputer using MicroPython][esp8266]. The LED panel will be
 composed of daisy-chained [MAX7219 8 × 8 dot matrix LED arrays][max7219].
@@ -17,14 +17,9 @@ First, you need a [ESP8266 microcomputer with a MicroPython firmware][esp8266]
 and a working serial connection from your computer. See [documentation][esp8266]
 for further instructions.
 
-To simplify uploading the files onto the MicroPython board, you may want to use
-[Adafruit Ampy][adafruit-ampy], a [Python][python] program to do just that:
+Then, you need [Python 3][python] with [PIP][pip]. Install using `brew install python`.
 
-* [Python 3][python] with [PIP][pip] – `brew install python`
-* [Adafruit Ampy][adafruit-ampy] – install with `pip3 install adafruit-ampy`
-
-The [Adafruit MAX7219 driver library][adafruit-max7219] to make the LED array
-control simple is already included.
+To connect to the [MicroPython’s][micropython] REPL, you need [picocom]. Install using `bres install picocom`.
 
 ## Instructions ##
 
@@ -33,13 +28,18 @@ the actual path to your COM device.
 
 ### Installation ###
 
-Connect the microcomputer to the macrocomputer.
-
-Put all the necessary files onto the PyBoard:
+Install this package and its dependencies using [setuptools]:
 
 ```
-ampy -p /dev/tty.wchusbserial1420 put max7219.py
-ampy -p /dev/tty.wchusbserial1420 put main.py
+$ pip install --process-dependency-links --editable .
+```
+
+Connect the microcomputer to the macrocomputer.
+
+Put all the necessary files onto the PyBoard using this package’s command:
+
+```
+$ led_panel_client_put /dev/tty.wchusbserial1420
 ```
 
 ### 8 × 8 matrix connection ###
@@ -60,10 +60,10 @@ are in the first two columns of the following table:
 Reset the microcomputer using the `RST` button on the board. This should load
 the `main.py` script.
 
-For debugging, `screen` to the PyBoard’s Python REPL:
+For debugging, use [picocom] to connect to the PyBoard’s [MicroPython][micropython] REPL:
 
 ```
-screen /dev/tty.wchusbserial1420 115200
+picocom -b 115200 /dev/tty.wchusbserial1420 
 ```
 
 ## Credit ##
@@ -82,6 +82,9 @@ on the interwebz.
 [esp8266]: https://docs.micropython.org/en/latest/esp8266/index.html
 [ledpanel-server]: https://github.com/Glutexo/ledpanel-server
 [max7219]: https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf
+[micropython]: https://micropython.org/
 [naučse]: https://naucse.python.cz/
+[picocom]: https://github.com/npat-efault/picocom
 [pip]: https://pypi.org/project/pip/
 [python]: https://www.python.org/
+[setuptools]: https://github.com/pypa/setuptools

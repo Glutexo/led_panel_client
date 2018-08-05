@@ -1,5 +1,5 @@
-from machine import Pin, SPI
 from ampy_patch import PatchedPin
+from machine import Pin, SPI
 from max7219 import Matrix8x8
 
 FLASH = Pin(0, Pin.IN)
