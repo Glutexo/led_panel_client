@@ -50,7 +50,7 @@ are in the first two columns of the following table:
 | MAX7219 | NodeMCU | Pin    | SPI          |
 |:--------|:--------|:-------|:-------------|
 | VCC     | 3V      |        |              |
-| GND     | GND     |        |              |
+| GND     | G       |        |              |
 | DIN     | D7      | GPIO13 | HMOSI (mosi) |
 | CS      | D8      | GPIO15 | GCS   (cs)   |
 | CLK     | D5      | GPIO14 | HSCLK (sck)  |
