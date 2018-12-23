@@ -3,13 +3,21 @@ from os import scandir
 from os.path import dirname
 
 
-LED_PANEL_CLIENT_FILES = ['ampy_patch.py', 'config.py', 'main.py', 'wlan.py']
+LED_PANEL_CLIENT_FILES = [
+    "ampy_patch.py",
+    "config.py",
+    "graphics.py",
+    "images.py",
+    "main.py",
+    "wlan.py",
+]
 
 
 def led_panel_client():
     """
     Populates this package’s micropython file paths.
     """
+
     def included(dir_entry):
         return dir_entry.name in LED_PANEL_CLIENT_FILES
 

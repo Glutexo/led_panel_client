@@ -10,7 +10,9 @@ def put():
     Uploads all necessary files to the pyboard.
     """
     if len(argv) < 2:
-        print("Pyboard COM port not specified. Usage: led_panel_client_put /dev/tty.wchusbserial1410")
+        print(
+            "Pyboard COM port not specified. Usage: led_panel_client_put /dev/tty.wchusbserial1410"
+        )
         exit(1)
 
     pyboard_pyboard = Pyboard(argv[1])
