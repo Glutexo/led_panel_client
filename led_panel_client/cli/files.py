@@ -3,7 +3,7 @@ from os import scandir
 from os.path import dirname
 
 
-LED_PANEL_CLIENT_FILES = ['ampy_patch.py', 'main.py']
+LED_PANEL_CLIENT_FILES = ['ampy_patch.py', 'config.py', 'main.py', 'wlan.py']
 
 
 def led_panel_client():

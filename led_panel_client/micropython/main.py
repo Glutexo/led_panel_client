@@ -1,6 +1,7 @@
 from ampy_patch import PatchedPin
 from machine import Pin, SPI
 from max7219 import Matrix8x8
+from wlan import connect
 
 FLASH = Pin(0, Pin.IN)
 
@@ -58,6 +59,8 @@ def draw_image(image):
         x += 1
 
     display.show()
+
+connect()
 
 last_flash_pressed = None
 current_image = 0
