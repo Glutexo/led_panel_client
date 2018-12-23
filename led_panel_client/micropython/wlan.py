@@ -16,5 +16,6 @@ def connect():
     _wlan.connect(WLAN_ESSID, WLAN_PASSWORD)
     while not _wlan.isconnected():
         sleep(0.1)
+        yield
 
     # Connected.

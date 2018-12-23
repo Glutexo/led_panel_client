@@ -1,6 +1,7 @@
 from ampy_patch import PatchedPin
 from machine import Pin, SPI
 from max7219 import Matrix8x8
+from time import sleep
 from wlan import connect
 
 FLASH = Pin(0, Pin.IN)
@@ -29,6 +30,9 @@ IMAGES = [
 ]
 
 MAP = { '0': False, '1': True }
+
+WIDTH = 8
+HEIGHT = 8
 
 spi = SPI(-1, 10000000, miso=Pin(12), mosi=Pin(13), sck=Pin(14))
 # display = Matrix8x8(spi, Pin(2))
@@ -60,7 +64,33 @@ def draw_image(image):
 
     display.show()
 
-connect()
+def draw_progress(generator):
+    display.fill(False)
+    display.show()
+    x = 0
+    y = 0
+    for _ in generator:
+        if y + 1 == HEIGHT:
+            continue
+        display.pixel(x, y, True)
+        display.show()
+        if x + 1 == WIDTH:
+            x = 0
+            y += 1
+        else:
+            x += 1
+
+def flash():
+    display.fill(True)
+    display.show()
+    sleep(0.1)
+    display.fill(False)
+    display.show()
+    sleep(0.1)
+
+
+draw_progress(connect())
+flash()
 
 last_flash_pressed = None
 current_image = 0
