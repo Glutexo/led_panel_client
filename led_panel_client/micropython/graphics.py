@@ -18,6 +18,11 @@ def init():
     return display
 
 
+def draw_fill(display, color):
+    display.fill(color)
+    display.show()
+
+
 def draw_image(display, image):
     display.fill(False)
 
@@ -36,18 +41,20 @@ def draw_image(display, image):
 
 
 def draw_progress(display, generator):
-    display.fill(False)
-    display.show()
+    draw_fill(display, False)
+
     x = 0
     y = 0
     for _ in generator:
-        if y + 1 == _DISPLAY_HEIGHT:
-            continue
         display.pixel(x, y, True)
         display.show()
         if x + 1 == _DISPLAY_WIDTH:
             x = 0
-            y += 1
+            if y + 1 == _DISPLAY_HEIGHT:
+                y = 0
+                draw_fill(display, False)
+            else:
+                y += 1
         else:
             x += 1
 
