@@ -1,4 +1,5 @@
 from ampy_patch import PatchedPin
+from config import DISPLAY_BRIGHTNESS
 from machine import Pin, SPI
 from max7219 import Matrix8x8
 from time import sleep
@@ -14,7 +15,7 @@ _DISPLAY_HEIGHT = 8
 def init():
     spi = SPI(-1, 10000000, miso=Pin(12), mosi=Pin(13), sck=Pin(14))
     display = Matrix8x8(spi, PatchedPin(15))
-    display.brightness(15)
+    display.brightness(DISPLAY_BRIGHTNESS)
     return display
 
 
